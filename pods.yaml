@@ -9,8 +9,6 @@ images:
 development:
   dev:
     image: :dev
-    entrypoint: ['ruby', 'compile.rb']
-
-  py:
-    image: :dev
-    entrypoint: ['python', 'to_image.py']
+    entrypoint: ['/src/run.sh']
+    bind_mounts:
+      /tmp/frames: /frames
