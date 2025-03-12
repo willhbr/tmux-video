@@ -1,0 +1,10 @@
+
+images:
+  dev:
+    tag: rick-tmux:latest
+    from: Containerfile
+
+development:
+  dev:
+    image: :dev
+    entrypoint: ['ruby', 'compile.rb']
