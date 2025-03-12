@@ -1,6 +1,8 @@
 require 'erb'
+require 'json'
 
-width = (95 / 2).to_i - 1
+width = (97 / 2).to_i - 1
+height = 27
 
 Dir['*.erb.conf'].each do |input|
   base = input.chomp('.erb.conf')
@@ -9,5 +11,5 @@ Dir['*.erb.conf'].each do |input|
   File.write(output, compiled)
 end
 
-system '/src/start.sh', '20'
+system '/src/start.sh', "#{height}"
 

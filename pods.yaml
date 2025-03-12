@@ -1,3 +1,5 @@
+defaults:
+  run: dev
 
 images:
   dev:
@@ -8,3 +10,7 @@ development:
   dev:
     image: :dev
     entrypoint: ['ruby', 'compile.rb']
+
+  py:
+    image: :dev
+    entrypoint: ['python', 'to_image.py']
