@@ -6,6 +6,7 @@ remaining="$1"
 next=$(( $remaining - 1 ))
 
 if [ "$remaining" -le 0 ]; then
+  echo -n 'press a to start...'
   read
   exit
 fi

@@ -25,6 +25,7 @@ def to_ansi(pixel):
 def compile_images(directory, limit, width, height):
   prev_image = None
   for idx, file in enumerate(sorted(os.listdir(directory))):
+    print(f"processing {file}")
     if idx > limit:
       break
     path = directory + '/' + file
@@ -38,14 +39,16 @@ def compile_images(directory, limit, width, height):
             old_col = to_ansi(prev_image.getpixel((x, y)))
             if col == old_col:
               continue
-          frame.write(f'rename-window -t {y}:={x} {col}\n')
-      frame.write(f'run -d 0.5 -bC "source-file \'generated/frame-{idx + 1}.gen.conf\'"')
+          frame.write(f'renamew -t {y}:={x} {col}\n')
+      # frame.write(f'run -d 0.5 -bC "source-file \'generated/frame-{idx + 1}.gen.conf\'"')
     prev_image = image
 
 
 directory = sys.argv[1]
 width = int(sys.argv[2]) // 2 - 1
 height = int(sys.argv[3])
+
+print(f"using {width}x{height} = {width * height} windows")
 
 output = 'create-windows.gen.conf'
 
@@ -56,4 +59,5 @@ with open(output, 'w') as f:
   f.write('  select-window -t :=0\n')
   f.write('}')
 
-compile_images(directory, 50, width, height)
+print(f"converting images in {directory}...")
+compile_images(directory, 200, width, height)
