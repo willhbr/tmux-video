@@ -25,7 +25,6 @@ def to_ansi(pixel):
 def compile_images(directory, limit, width, height):
   prev_image = None
   for idx, file in enumerate(sorted(os.listdir(directory))):
-    print(f"processing {file}")
     if idx > limit:
       break
     path = directory + '/' + file
@@ -40,7 +39,7 @@ def compile_images(directory, limit, width, height):
             if col == old_col:
               continue
           frame.write(f'renamew -t {y}:={x} {col}\n')
-      # frame.write(f'run -d 0.5 -bC "source-file \'generated/frame-{idx + 1}.gen.conf\'"')
+      frame.write(f'run -d 0.5 -bC "source-file \'generated/frame-{idx + 1}.gen.conf\'"')
     prev_image = image
 
 
